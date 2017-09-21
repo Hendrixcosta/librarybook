@@ -25,6 +25,8 @@
                     </h1>
                 </div>
                 <group>
+                    <field name="state" />
+                    <field name="names" />
                     <field name="diretor" />
                 </group>
                 <field name="livros_ids" />

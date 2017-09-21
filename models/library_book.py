@@ -163,3 +163,18 @@ class Livros(models.Model):
     def action_publicar(self):
         for record in self:
             record.change_state('publicado')
+
+    @api.multi
+    def write(self, values):
+        return super(Livros, self).write(values)
+
+    @api.model
+    def create(self, values):
+        if not values.get('data_lancamento'):
+            raise ValidationError("Necessario data!")
+        library_book = super(Livros, self).create(values)
+        return library_book
+
+    @api.multi
+    def unlink(self):
+        return super(Livros, self).unlink()

@@ -28,17 +28,17 @@
         </field>
     </record>
 
-    <act_window id="action_publicar_livro"
-                multi="True"
-                key2="client_action_multi" name="Publicar Livros"
+    <act_window id="action_publicar_livro" name="Publicar Livros2"
+                multi="True" key2="client_action_multi"
                 res_model="library.book.publicacao.wizard" src_model="library.book"
                 view_mode="form" target="new" view_type="form"
-                context="{'default_livros_ids': context.get('active_ids') }"/>
+                context="{'default_livros_ids': context.get('active_ids')}"/>
 
-    <menuitem id="menu_publicacoes_wizard"
-              parent="library_book_sub_menu"
-              action="action_publicar_livro"
-              sequence="20"
-    />
+    <menuitem
+            id="menu_publicacoes_wizard"
+            parent="library_book_sub_menu"
+            action="action_publicar_livro"
+            sequence="20" />
+
 
 </odoo>

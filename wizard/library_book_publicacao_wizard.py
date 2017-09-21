@@ -39,20 +39,9 @@ class Publicacao(models.TransientModel):
                 }
 
                 # Cria uma instancia da publicacao
-                publicacoes.append(self.env['library.book.publicacao'].create(publicacao).id)
+                self.env['library.book.publicacao'].create(publicacao)
 
                 # Seta o estado do livro como publicado
                 livro.state = 'publicado'
 
-                # return {'type': 'ir.actions.act_window_close'}
-
-                action = {
-                    'type': 'ir.action.act_window',
-                    'name': 'Publicações',
-                    'res_model': 'library.book.publicacao',
-                    'domain': [(b'id', b'in', [1, 2]) ],
-                    'view_mode': 'form,tree',
-                }
-
-                print (action)
-                return action
+        return {'type': 'ir.actions.act_window_close'}

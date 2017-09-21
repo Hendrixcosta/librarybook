@@ -20,7 +20,7 @@
             id="action_all_library"
             name="Bibliotecas"
             res_model="library"
-            view_mode="tree,form"
+            view_mode="form,tree"
     />
 
     <!-- Menu para Editores -->

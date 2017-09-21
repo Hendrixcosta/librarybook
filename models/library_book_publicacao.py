@@ -30,9 +30,3 @@ class LibraryBookPublicacao(models.Model):
         required=True,
         string='Livros',
     )
-
-    def _compute_name(self):
-        for record in self:
-            if record.data_publicacao and record.livros_id:
-                record.name = record.livros_id.name + \
-                              ' - ' + record.data_publicacao

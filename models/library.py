@@ -2,7 +2,7 @@
 
 from __future__ import division, print_function, unicode_literals
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class Biblioteca(models.Model):
@@ -19,8 +19,31 @@ class Biblioteca(models.Model):
         required=True,
     )
 
-    livros_ids = fields.One2many(
+    state = fields.Selection([
+        ('novo', 'Novo'),
+        ('confirmado', 'Confirmado'),
+        ('enviado', 'Enviado'),
+        ('publicado', 'Publicado'),
+        ('cancelado', 'cancelado')],
+        string='State',
+        default='novo',
+    )
+
+    livros_ids = fields.Many2many(
         comodel_name='library.book',
         inverse_name='biblioteca_id',
         string='Livros',
+        domain="[('state', '=', state)]"
     )
+
+    names = fields.Char(
+        string='Nomes da galera',
+    )
+
+    @api.onchange('livros_id')
+    def onchange_livros_id(self):
+        names = ''
+        for record in self:
+            for livro in record.livros_ids:
+                names += livro.name
+            record.names = names

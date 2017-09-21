@@ -23,6 +23,16 @@ class ResPartner(models.Model):
         string='Eh Onchange?',
     )
 
+    state_id = fields.Many2one(
+        comodel_name="res.country.state",
+        string='State',
+    )
+
+    country_id = fields.Many2one(
+        comodel_name='res.country',
+        string='Country'
+    )
+
     @api.multi
     def open_commercial_entity(self):
         print ('=================================== Chamou a funcao')
